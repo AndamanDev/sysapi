@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+var express = require("express");
+const {
+  // getUsers,
+  // getUser,
+  createUser,
+  // updateUser,
+  // deleteUser,
+} = require("../controllers/users");
+
+const router = express.Router({ mergeParams: true });
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router
+  .route('/').post(createUser);
 
 module.exports = router;
