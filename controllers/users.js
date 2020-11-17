@@ -27,7 +27,7 @@ const bcrypt = require('bcryptjs')
 // @access    Private/Admin
 exports.createUser = asyncHandler(async (req, res, next) => {
   const salt = await bcrypt.genSalt(12)
-  const password = await bcrypt.hash('andamanb8888888', salt)
+  const password = await bcrypt.hash(req.body.password, salt)
   const user = await knex('user').insert({
     username: 'admin',
     email: 'codelaravel@gmail.com',
@@ -36,7 +36,7 @@ exports.createUser = asyncHandler(async (req, res, next) => {
     // unconfirmed_email: '',
     // blocked_at: '',
     // registration_ip: '',
-    created_at: Date.now(),
+    created_at: Math.round(new Date() / 1000),
     // updated_at: '',
     // last_login_at: '',
     // access_token_expired_at: '',
