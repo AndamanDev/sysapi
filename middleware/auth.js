@@ -14,10 +14,9 @@ exports.protect = asyncHandler(async (req, res, next) => {
     // Set token from Bearer token in header
     token = req.headers.authorization.split(' ')[1]
     // Set token from cookie
+  } else if (req.cookies.token) {
+    token = req.cookies.token
   }
-  // else if (req.cookies.token) {
-  //   token = req.cookies.token;
-  // }
 
   // Make sure token exists
   if (!token) {
@@ -27,12 +26,17 @@ exports.protect = asyncHandler(async (req, res, next) => {
   try {
     // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
-
-    req.user = await knex.select().table('user').where('id', decoded.id)
-
-    next()
+    if (decoded) {
+      next()
+    }
   } catch (err) {
-    return next(new ErrorResponse('Not authorized to access this route', 401))
+    console.log(err)
+    return next(
+      new ErrorResponse(
+        'Not authorized to access this route' + err.message,
+        401
+      )
+    )
   }
 })
 
