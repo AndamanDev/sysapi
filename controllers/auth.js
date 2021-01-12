@@ -88,6 +88,15 @@ exports.getMe = asyncHandler(async (req, res, next) => {
   }
 })
 
+exports.getPull = asyncHandler(async (req, res, next) => {
+  const { exec } = require('child_process')
+  exec('git pull', (err, stdout, stderr) => {
+    console.log('error :', err)
+    console.log('stdout:', stdout)
+    console.log('stderr:', stderr)
+  })
+})
+
 // // @desc      Update user details
 // // @route     PUT /api/v1/auth/updatedetails
 // // @access    Private
