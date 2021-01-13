@@ -91,9 +91,12 @@ exports.getMe = asyncHandler(async (req, res, next) => {
 exports.getPull = asyncHandler(async (req, res, next) => {
   const { exec } = require('child_process')
   exec('git pull', (err, stdout, stderr) => {
-    console.log('error :', err)
-    console.log('stdout:', stdout)
-    console.log('stderr:', stderr)
+    res.status(200).json({
+      success: true,
+      error: err,
+      stderr: stderr,
+      stdout: stdout,
+    })
   })
 })
 

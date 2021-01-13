@@ -4,6 +4,7 @@ const {
   login,
   logout,
   getMe,
+  getPull,
   // forgotPassword,
   // resetPassword,
   // updateDetails,
