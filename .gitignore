@@ -1,1 +1,4 @@
 /node_modules/
+/sqlite/sys.db
+/config/wisas.js
+/config/Yamatocarinout.js
