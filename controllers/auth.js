@@ -88,10 +88,7 @@ exports.getMe = asyncHandler(async (req, res, next) => {
       })
     }
   } catch (err) {
-    res.status(401).json({
-      success: false,
-      data: err,
-    })
+    next(err)
   }
 })
 
