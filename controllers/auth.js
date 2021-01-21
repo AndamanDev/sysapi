@@ -77,13 +77,20 @@ exports.logout = asyncHandler(async (req, res, next) => {
 // @route     POST /api/v1/auth/me
 // @access    Private
 exports.getMe = asyncHandler(async (req, res, next) => {
-  if (!req.body.id) {
-    return next(new ErrorResponse('กรุณาใส่ id ที่จะค้นหาด้วยครับ', 400))
-  } else {
-    const user = await knex('user').where({ id: req.body.id }).select()
-    res.status(200).json({
-      success: true,
-      data: user,
+  try {
+    if (!req.body.id) {
+      return next(new ErrorResponse('กรุณาใส่ id ที่จะค้นหาด้วยครับ', 400))
+    } else {
+      const user = await knex('user').where({ id: req.body.id }).select()
+      res.status(200).json({
+        success: true,
+        data: user,
+      })
+    }
+  } catch (err) {
+    res.status(401).json({
+      success: false,
+      data: err,
     })
   }
 })
