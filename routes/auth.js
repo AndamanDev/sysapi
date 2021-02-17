@@ -5,6 +5,7 @@ const {
   logout,
   getMe,
   getPull,
+  postInstall,
   // forgotPassword,
   // resetPassword,
   // updateDetails,
@@ -20,6 +21,7 @@ router.post('/login', login)
 router.get('/logout', logout)
 router.get('/me', protect, getMe)
 router.get('/pull', protect, getPull)
+router.post('/install', protect, postInstall)
 // router.put('/updatedetails', protect, updateDetails)
 // router.put('/updatepassword', protect, updatePassword)
 // router.post('/forgotpassword', forgotPassword)

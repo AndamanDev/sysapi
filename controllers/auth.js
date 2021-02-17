@@ -104,6 +104,18 @@ exports.getPull = asyncHandler(async (req, res, next) => {
   })
 })
 
+exports.postInstall = asyncHandler(async (req, res, next) => {
+  const { exec } = require('child_process')
+  exec('npm install', (err, stdout, stderr) => {
+    res.status(200).json({
+      success: true,
+      error: err,
+      stderr: stderr,
+      stdout: stdout,
+    })
+  })
+})
+
 // // @desc      Update user details
 // // @route     PUT /api/v1/auth/updatedetails
 // // @access    Private
