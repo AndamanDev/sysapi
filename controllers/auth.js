@@ -7,6 +7,7 @@ const knex = require('../config/db')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 dotenv.config({ path: '../config/config.env' })
+const { exec } = require('child_process')
 
 // @desc      Register user
 // @route     POST /api/v1/auth/register
@@ -93,8 +94,8 @@ exports.getMe = asyncHandler(async (req, res, next) => {
 })
 
 exports.getPull = asyncHandler(async (req, res, next) => {
-  const { exec } = require('child_process')
   exec('git pull', (err, stdout, stderr) => {
+    exec('npm install')
     res.status(200).json({
       success: true,
       error: err,
@@ -105,7 +106,6 @@ exports.getPull = asyncHandler(async (req, res, next) => {
 })
 
 exports.postInstall = asyncHandler(async (req, res, next) => {
-  const { exec } = require('child_process')
   exec('npm install', (err, stdout, stderr) => {
     res.status(200).json({
       success: true,
