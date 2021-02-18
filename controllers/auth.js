@@ -95,7 +95,6 @@ exports.getMe = asyncHandler(async (req, res, next) => {
 
 exports.getPull = asyncHandler(async (req, res, next) => {
   exec('git pull', (err, stdout, stderr) => {
-    exec('npm install')
     res.status(200).json({
       success: true,
       error: err,
