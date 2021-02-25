@@ -1,5 +1,6 @@
 const { TsTrucktype, TsTrucktypeQuerier } = require('../../models')
 const trimValue = require('../../utils/trim-value')
+const _ = require('lodash')
 
 /**
  * GET All
@@ -9,7 +10,18 @@ const trimValue = require('../../utils/trim-value')
  */
 exports.getTsTrucktypeList = async (req, res) => {
   try {
-    const querier = new TsTrucktypeQuerier(req.query, TsTrucktype.find())
+    let query = req.query
+    const perPage = parseInt(_.get(query, 'page.size', 50))
+    const currentPage = parseInt(_.get(query, 'page.number', 1))
+    if (perPage === -1) {
+      query = _.omit(query, ['page'])
+    } else {
+      query = Object.assign(query, {
+        size: perPage,
+        number: currentPage,
+      })
+    }
+    const querier = new TsTrucktypeQuerier(query, TsTrucktype.find())
     const response = await querier.run()
     res.success(trimValue(response))
   } catch (err) {

@@ -1,5 +1,6 @@
 const { TsPrices, TsPricesQuerier } = require('../../models')
 const trimValue = require('../../utils/trim-value')
+const _ = require('lodash')
 
 /**
  * GET All
@@ -9,7 +10,18 @@ const trimValue = require('../../utils/trim-value')
  */
 exports.getTsPricesList = async (req, res) => {
   try {
-    const querier = new TsPricesQuerier(req.query, TsPrices.find())
+    let query = req.query
+    const perPage = parseInt(_.get(query, 'page.size', 50))
+    const currentPage = parseInt(_.get(query, 'page.number', 1))
+    if (perPage === -1) {
+      query = _.omit(query, ['page'])
+    } else {
+      query = Object.assign(query, {
+        size: perPage,
+        number: currentPage,
+      })
+    }
+    const querier = new TsPricesQuerier(query, TsPrices.find())
     const response = await querier.run()
     res.success(trimValue(response))
   } catch (err) {
