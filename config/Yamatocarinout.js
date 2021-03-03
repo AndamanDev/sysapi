@@ -7,7 +7,7 @@ var Yamatocarinout = require('knex')({
     database: process.env.MSSQL_CARINOUT_DB,
     options: {
       port: 1433,
-      encrypt: true,
+      encrypt: false,
       enableArithAbort: true,
     },
   },

@@ -1,5 +1,4 @@
 const wisas = require('../config/wisas')
-
 class Model {
   constructor() {}
 

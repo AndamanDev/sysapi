@@ -7,7 +7,7 @@ var wisas = require('knex')({
     database: process.env.MSSQL_WISAS_DB,
     options: {
       port: 1433,
-      encrypt: true,
+      encrypt: false,
       enableArithAbort: true,
     },
   },
