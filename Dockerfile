@@ -23,7 +23,7 @@ COPY package*.json /usr/src/app/
 RUN npm install
 
 # Bundle app source
-COPY .env.production /usr/src/app/.env
+# COPY .env.production /usr/src/app/.env
 COPY . /usr/src/app
 
 # TimeZone
