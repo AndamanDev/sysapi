@@ -6,6 +6,8 @@ class Querier extends BaseQuerier {
   defineSchema(schema) {
     // filtering
     schema.filter('q', '=')
+	schema.filter('status', operators, { field: 'vRptContractPrice.status' })
+	schema.filter('tot_actwgt', operators, { field: 'vRptContractPrice.tot_actwgt' })
     schema.filter('pyear', operators, { field: 'vRptContractPrice.pyear' })
     schema.filter('trd_code', operators, {
       field: 'vRptContractPrice.trd_code',
@@ -173,6 +175,8 @@ class Querier extends BaseQuerier {
         .orWhere('vRptContractPrice.state_scrap', 'like', value)
         .orWhere('vRptContractPrice.pay', 'like', value)
         .orWhere('vRptContractPrice.reference', 'like', value)
+		.orWhere('vRptContractPrice.status', 'like', value)
+		.orWhere('vRptContractPrice.tot_actwgt', 'like', value)
     })
   }
 
