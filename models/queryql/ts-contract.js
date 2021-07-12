@@ -6,8 +6,8 @@ class Querier extends BaseQuerier {
   defineSchema(schema) {
     // filtering
     schema.filter('q', '=')
-	schema.filter('status', operators, { field: 'vRptContractPrice.status' })
-	schema.filter('tot_actwgt', operators, { field: 'vRptContractPrice.tot_actwgt' })
+    schema.filter('status', operators, { field: 'vRptContractPrice.status' })
+    schema.filter('tot_actwgt', operators, { field: 'vRptContractPrice.tot_actwgt' })
     schema.filter('pyear', operators, { field: 'vRptContractPrice.pyear' })
     schema.filter('trd_code', operators, {
       field: 'vRptContractPrice.trd_code',
@@ -48,41 +48,41 @@ class Querier extends BaseQuerier {
     schema.filter('sup_title_name', operators, {
       field: 'vRptContractPrice.sup_title_name',
     })
-    schema.filter('cut_price', '=', { field: 'vRptContractPrice.cut_price' })
-    schema.filter('ret_code', '=', { field: 'vRptContractPrice.ret_code' })
-    schema.filter('wh_number', '=', { field: 'vRptContractPrice.wh_number' })
-    schema.filter('ret_title', '=', { field: 'vRptContractPrice.ret_title' })
-    schema.filter('ret_name', '=', { field: 'vRptContractPrice.ret_name' })
-    schema.filter('wh_name', '=', { field: 'vRptContractPrice.wh_name' })
-    schema.filter('rev_no', '=', { field: 'vRptContractPrice.rev_no' })
-    schema.filter('tot_estwgt', '=', { field: 'vRptContractPrice.tot_estwgt' })
-    schema.filter('tot_wgtlimit', '=', {
+    schema.filter('cut_price', operators, { field: 'vRptContractPrice.cut_price' })
+    schema.filter('ret_code', operators, { field: 'vRptContractPrice.ret_code' })
+    schema.filter('wh_number', operators, { field: 'vRptContractPrice.wh_number' })
+    schema.filter('ret_title', operators, { field: 'vRptContractPrice.ret_title' })
+    schema.filter('ret_name', operators, { field: 'vRptContractPrice.ret_name' })
+    schema.filter('wh_name', operators, { field: 'vRptContractPrice.wh_name' })
+    schema.filter('rev_no', operators, { field: 'vRptContractPrice.rev_no' })
+    schema.filter('tot_estwgt', operators, { field: 'vRptContractPrice.tot_estwgt' })
+    schema.filter('tot_wgtlimit', operators, {
       field: 'vRptContractPrice.tot_wgtlimit',
     })
-    schema.filter('gain_qb', '=', { field: 'vRptContractPrice.gain_qb' })
-    schema.filter('effdate_from', '=', {
+    schema.filter('gain_qb', operators, { field: 'vRptContractPrice.gain_qb' })
+    schema.filter('effdate_from', operators, {
       field: 'vRptContractPrice.effdate_from',
     })
-    schema.filter('effdate_to', '=', { field: 'vRptContractPrice.effdate_to' })
-    schema.filter('ver_by', '=', { field: 'vRptContractPrice.ver_by' })
-    schema.filter('ver_date', '=', { field: 'vRptContractPrice.ver_date' })
-    schema.filter('apprv_by', '=', { field: 'vRptContractPrice.apprv_by' })
-    schema.filter('apprv_date', '=', { field: 'vRptContractPrice.apprv_date' })
-    schema.filter('create_by', '=', { field: 'vRptContractPrice.create_by' })
-    schema.filter('create_date', '=', {
+    schema.filter('effdate_to', operators, { field: 'vRptContractPrice.effdate_to' })
+    schema.filter('ver_by', operators, { field: 'vRptContractPrice.ver_by' })
+    schema.filter('ver_date', operators, { field: 'vRptContractPrice.ver_date' })
+    schema.filter('apprv_by', operators, { field: 'vRptContractPrice.apprv_by' })
+    schema.filter('apprv_date', operators, { field: 'vRptContractPrice.apprv_date' })
+    schema.filter('create_by', operators, { field: 'vRptContractPrice.create_by' })
+    schema.filter('create_date', operators, {
       field: 'vRptContractPrice.create_date',
     })
-    schema.filter('com_grade_name', '=', {
+    schema.filter('com_grade_name', operators, {
       field: 'vRptContractPrice.com_grade_name',
     })
-    schema.filter('est_wgt', '=', { field: 'vRptContractPrice.est_wgt' })
-    schema.filter('trd_title', '=', { field: 'vRptContractPrice.trd_title' })
-    schema.filter('trd_name', '=', { field: 'vRptContractPrice.trd_name' })
-    schema.filter('state_scrap', '=', {
+    schema.filter('est_wgt', operators, { field: 'vRptContractPrice.est_wgt' })
+    schema.filter('trd_title', operators, { field: 'vRptContractPrice.trd_title' })
+    schema.filter('trd_name', operators, { field: 'vRptContractPrice.trd_name' })
+    schema.filter('state_scrap', operators, {
       field: 'vRptContractPrice.state_scrap',
     })
-    schema.filter('pay', '=', { field: 'vRptContractPrice.pay' })
-    schema.filter('reference', '=', { field: 'vRptContractPrice.reference' })
+    schema.filter('pay', operators, { field: 'vRptContractPrice.pay' })
+    schema.filter('reference', operators, { field: 'vRptContractPrice.reference' })
 
     // sorting
     schema.sort('pyear', { field: 'vRptContractPrice.pyear' })
@@ -175,8 +175,8 @@ class Querier extends BaseQuerier {
         .orWhere('vRptContractPrice.state_scrap', 'like', value)
         .orWhere('vRptContractPrice.pay', 'like', value)
         .orWhere('vRptContractPrice.reference', 'like', value)
-		.orWhere('vRptContractPrice.status', 'like', value)
-		.orWhere('vRptContractPrice.tot_actwgt', 'like', value)
+        .orWhere('vRptContractPrice.status', 'like', value)
+        .orWhere('vRptContractPrice.tot_actwgt', 'like', value)
     })
   }
 
