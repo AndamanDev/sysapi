@@ -5,6 +5,7 @@ const yup = require('yup')
 const queryql = require('@truepic/queryql').errors
 const devMode = process.env.NODE_ENV === 'development'
 const _ = require('lodash')
+const { errorLogger } = require('../logger')
 /**
  * Error handler. Send stacktrace only during development
  * @public
@@ -19,7 +20,18 @@ const handler = (err, req, res, next) => {
   }
 
   if (!devMode) {
+    // save log file
+    errorLogger.warn(Object.assign({}, response, { message: err.message }))
+
     delete response.stack
+
+    if (response.statusCode === 500) {
+      response = Object.assign({}, response, {
+        message: 'Internal Server Error.',
+      })
+    }
+  } else {
+    console.log('stack', err.stack)
   }
 
   res.status(err.status || 500)
@@ -58,7 +70,7 @@ exports.converter = (err, req, res, next) => {
       stack: err.stack,
     })
   } else if (isAxiosError) {
-    const { status } = err.response
+    // const { status } = err.response
     const message = _.get(err.response, 'data.error', err.message)
     convertedError = new APIError({
       message: message,

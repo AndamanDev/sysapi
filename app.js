@@ -9,6 +9,10 @@ const helmet = require('helmet')
 const cors = require('cors')
 const error = require('./utils/error')
 const customResponse = require('./middleware/custom-response')
+const pino = require('pino')
+const pinoHttp = require('pino-http')
+const moment = require('moment')
+const accessLogStream = require('./logger/access-stream')
 
 const indexRouter = require('./routes/index')
 const users = require('./routes/users')
@@ -26,6 +30,7 @@ const cr_reg_persons = require('./routes/cr_reg_persons')
 const cr_reg_trucks = require('./routes/cr_reg_trucks')
 
 // const errorHandler = require('./middleware/error')
+moment.locale('th')
 
 const app = express()
 
@@ -45,6 +50,33 @@ app.use(function (req, res, next) {
   }
   next()
 })
+
+/**
+ * Logger
+ */
+app.use(
+  pinoHttp({
+    logger: pino(
+      {
+        timestamp: () => {
+          return `,"time": "${moment().format()}"`
+        },
+      },
+      accessLogStream
+    ),
+    genReqId: (req) => {
+      return req.id
+    },
+    customLogLevel: function (res, err) {
+      if (res.statusCode >= 400 && res.statusCode < 500) {
+        return 'warn'
+      } else if (res.statusCode >= 500 || err) {
+        return 'error'
+      }
+      return 'info'
+    },
+  })
+)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
