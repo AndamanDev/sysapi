@@ -4,9 +4,9 @@ const rootPath = require('../utils/path')
 
 // create a rotating write stream
 const accessLogStream = rfs.createStream('access.log', {
-  interval: process.env.LOG_INTERVAL, // rotate daily
+  interval: '1d', // rotate daily
   path: path.join(rootPath, 'logs'),
-  size: process.env.LOG_FILE_SIZE,
+  size: '10M',
 })
 
 module.exports = accessLogStream
