@@ -21,6 +21,8 @@ COPY package*.json /usr/src/app/
 
 # Install app dependencies
 RUN npm install
+RUN npm update
+RUN npm audit fix
 
 # Bundle app source
 COPY .env.production /usr/src/app/.env
