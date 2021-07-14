@@ -27,6 +27,7 @@ module.exports = () => {
     req.throw = throwError
 
     const success = (data = '', statusCode = 200) => {
+      console.log(data)
       res.status(statusCode || 200).send({
         success: true,
         statusCode: statusCode,
