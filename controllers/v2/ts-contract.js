@@ -23,7 +23,7 @@ exports.getTsContractList = async (req, res) => {
     }
     const querier = new TsContractQuerier(query, TsContract.find())
     const response = await querier.run()
-    console.log(response)
+    console.log(trimValue(response))
     res.success(trimValue(response))
   } catch (err) {
     res.error(err)
