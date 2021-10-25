@@ -12,6 +12,7 @@ const customResponse = require('./middleware/custom-response')
 const pino = require('pino')
 const pinoHttp = require('pino-http')
 const moment = require('moment')
+const { initializeApp, cert } = require('firebase-admin/app')
 const accessLogStream = require('./logger/access-stream')
 
 const indexRouter = require('./routes/index')
@@ -33,6 +34,12 @@ const cr_reg_trucks = require('./routes/cr_reg_trucks')
 moment.locale('th')
 
 const app = express()
+
+const serviceAccount = require('./sys1-319107-firebase-adminsdk-1pa58-3d01087f80.json')
+initializeApp({
+  credential: cert(serviceAccount),
+  databaseURL: 'https://sys1-319107.firebaseio.com',
+})
 
 app.use(helmet())
 app.use(cors())
