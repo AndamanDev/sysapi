@@ -1,4 +1,6 @@
 const wisas = require('../config/wisas')
+const moment = require('moment')
+moment.locale('th')
 class Model {
   constructor() {}
 
@@ -47,6 +49,12 @@ class Model {
         //'vRptContractPrice.reference',
       ])
       .from('vRptContractPrice')
+      .where({
+        'vRptContractPrice.status': 'A',
+        'vRptContractPrice.pyear': moment().format('YYYY'),
+      })
+      .whereRaw('vRptContractPrice.effdate_to >= ?', [moment().format('YYYY-MM-DD')])
+      .whereRaw('vRptContractPrice.tot_actwgt < vRptContractPrice.tot_estwgt')
   }
 
   static findOne(condition = {}) {
