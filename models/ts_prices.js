@@ -38,7 +38,7 @@ class Model {
       })
       .whereNotNull('vFindPriAnnFix_with_Freight.trd_code')
       .whereNotNull('vFindPriAnnFix_with_Freight.ret_code')
-      .whereRaw(`FORMAT(vFindPriAnnFix_with_Freight.effdate_to, 'yyyy-MM-dd') = ?`, [moment().format('YYYY-MM-DD')])
+      .whereRaw(`vFindPriAnnFix_with_Freight.effdate_to >= ?`, [moment().format('YYYY-MM-DD')])
   }
 
   static findOne(condition = {}) {
