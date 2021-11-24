@@ -53,6 +53,8 @@ class Model {
         'vRptContractPrice.status': 'A',
         'vRptContractPrice.pyear': moment().format('YYYY'),
       })
+      .whereNotNull('vRptContractPrice.trd_code')
+      .whereNotNull('vRptContractPrice.ret_code')
       .whereRaw('vRptContractPrice.effdate_to >= ?', [moment().format('YYYY-MM-DD')])
       .whereRaw('vRptContractPrice.tot_actwgt < vRptContractPrice.tot_estwgt')
   }

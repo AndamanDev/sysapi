@@ -1,4 +1,6 @@
 const wisas = require('../config/wisas')
+const moment = require('moment')
+moment.locale('th')
 class Model {
   constructor() {}
 
@@ -31,6 +33,12 @@ class Model {
         //'vFindPriAnnFix_with_Freight.effdate_to',
       ])
       .from('vFindPriAnnFix_with_Freight')
+      .where({
+        'vFindPriAnnFix_with_Freight.pyear': moment().format('YYYY')
+      })
+      .whereNotNull('vFindPriAnnFix_with_Freight.trd_code')
+      .whereNotNull('vFindPriAnnFix_with_Freight.ret_code')
+      .whereRaw(`FORMAT(vFindPriAnnFix_with_Freight.effdate_to, 'yyyy-MM-dd') = ?`, [moment().format('YYYY-MM-DD')])
   }
 
   static findOne(condition = {}) {
