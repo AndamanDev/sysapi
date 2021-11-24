@@ -4,3 +4,4 @@
 # /config/Yamatocarinout.js
 .env
 config/.env
+package-lock.json

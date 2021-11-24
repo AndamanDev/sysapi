@@ -75,6 +75,9 @@ class Querier extends BaseQuerier {
     schema.filter('com_grade_name', operators, {
       field: 'vRptContractPrice.com_grade_name',
     })
+    schema.filter('com_grade_code', operators, {
+      field: 'vRptContractPrice.com_grade_code',
+    })
     schema.filter('est_wgt', operators, { field: 'vRptContractPrice.est_wgt' })
     schema.filter('trd_title', operators, { field: 'vRptContractPrice.trd_title' })
     schema.filter('trd_name', operators, { field: 'vRptContractPrice.trd_name' })
@@ -124,6 +127,7 @@ class Querier extends BaseQuerier {
     schema.sort('create_by', { field: 'vRptContractPrice.create_by' })
     schema.sort('create_date', { field: 'vRptContractPrice.create_date' })
     schema.sort('com_grade_name', { field: 'vRptContractPrice.com_grade_name' })
+    schema.sort('com_grade_code', { field: 'vRptContractPrice.com_grade_code' })
     schema.sort('est_wgt', { field: 'vRptContractPrice.est_wgt' })
     schema.sort('trd_title', { field: 'vRptContractPrice.trd_title' })
     schema.sort('trd_name', { field: 'vRptContractPrice.trd_name' })
@@ -169,6 +173,7 @@ class Querier extends BaseQuerier {
         .orWhere('vRptContractPrice.create_by', 'like', value)
         .orWhere('vRptContractPrice.create_date', 'like', value)
         .orWhere('vRptContractPrice.com_grade_name', 'like', value)
+        .orWhere('vRptContractPrice.com_grade_code', 'like', value)
         .orWhere('vRptContractPrice.est_wgt', 'like', value)
         .orWhere('vRptContractPrice.trd_title', 'like', value)
         .orWhere('vRptContractPrice.trd_name', 'like', value)
