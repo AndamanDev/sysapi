@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const asyncHandler = require('./async')
 const ErrorResponse = require('../utils/errorResponse')
+const admin = require('firebase-admin')
 // const bcrypt = require('bcryptjs')
 // const knex = require('../config/db')
 // Protect routes
@@ -14,16 +15,25 @@ exports.protect = asyncHandler(async (req, res, next) => {
   } else if (req.cookies.token) {
     token = req.cookies.token
   }
-
-  // Make sure token exists
-  if (!token) {
-    return next(new ErrorResponse('Not authorized to access this route', 401))
-  }
+  const firebaseToken = req.headers['x-firebase-token'] || req.headers['X-Firebase-Token']
 
   try {
-    // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET)
-    if (decoded) {
+    if (firebaseToken) {
+      const decodedToken = await admin.auth().verifyIdToken(firebaseToken)
+      // const userRecord = await admin.auth().getUser(decodedToken.uid)
+      // const user = userRecord.toJSON()
+      req.user = decodedToken
+      next()
+    } else if (token) {
+      // Verify token
+      const decoded = jwt.verify(token, process.env.JWT_SECRET)
+      if (decoded) {
+        next()
+      }
+    } // Make sure token exists
+    else if (!token) {
+      return next(new ErrorResponse('Not authorized to access this route', 401))
+    } else {
       next()
     }
   } catch (err) {

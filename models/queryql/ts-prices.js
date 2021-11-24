@@ -128,7 +128,7 @@ class Querier extends BaseQuerier {
     return builder.where(function () {
       this.orWhere('vFindPriAnnFix_with_Freight.pyear', 'like', value)
         .orWhere('vFindPriAnnFix_with_Freight.period_no', 'like', value)
-        .orWhere('vFindPriAnnFix_with_Freight.trd_code', 'like', value)
+        .orWhere('vFindPriAnnFix_with_Freight.trd_code', 'like', `${value}`)
         .orWhere('vFindPriAnnFix_with_Freight.ret_code', 'like', value)
         .orWhere('vFindPriAnnFix_with_Freight.wh_number', 'like', value)
         .orWhere('vFindPriAnnFix_with_Freight.com_grade_code', 'like', value)
@@ -150,6 +150,10 @@ class Querier extends BaseQuerier {
         .orWhere('vFindPriAnnFix_with_Freight.effdate_from', 'like', value)
         .orWhere('vFindPriAnnFix_with_Freight.effdate_to', 'like', value)
     })
+  }
+
+  'filter:trd_code[=]'(builder, { value }) {
+    return builder.where('vFindPriAnnFix_with_Freight.trd_code', `${value}`)
   }
 
   async run() {

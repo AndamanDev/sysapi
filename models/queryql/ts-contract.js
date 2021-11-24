@@ -180,6 +180,10 @@ class Querier extends BaseQuerier {
     })
   }
 
+  'filter:trd_code[=]'(builder, { value }) {
+    return builder.where('vRptContractPrice.trd_code', `${value}`)
+  }
+
   async run() {
     super.run()
 

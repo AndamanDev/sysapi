@@ -11,7 +11,7 @@ const { errorLogger } = require('../logger')
  * @public
  */
 const handler = (err, req, res, next) => {
-  const response = {
+  let response = {
     success: false,
     statusCode: err.status,
     message: err.message || httpStatus[err.status],
