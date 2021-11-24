@@ -68,7 +68,7 @@ class Querier extends BaseQuerier {
   'filter:q[=]'(builder, { value }) {
     value = `%${value}%`
     return builder.where(function () {
-      this.orWhere('ts_trader.trd_code', 'like', value)
+      this.orWhere('ts_trader.trd_code', 'like', `'${value}'`)
       this.orWhere('ts_trader.trd_title', 'like', value)
       this.orWhere('ts_trader.trd_name', 'like', value)
       this.orWhere('ts_trader.trd_adr1', 'like', value)
@@ -94,6 +94,10 @@ class Querier extends BaseQuerier {
       this.orWhere('ts_trader.change_date', 'like', value)
       this.orWhere('ts_trader.msrepl_tran_version', 'like', value)
     })
+  }
+
+  'filter:trd_code[=]'(builder, { value }) {
+    return builder.where('ts_trader.trd_code', `'${value}'`)
   }
 
   async run() {
