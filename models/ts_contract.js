@@ -56,7 +56,7 @@ class Model {
       .whereNotNull('vRptContractPrice.trd_code')
       .whereNotNull('vRptContractPrice.ret_code')
       .whereRaw('vRptContractPrice.effdate_to >= ?', [moment().format('YYYY-MM-DD')])
-      .whereRaw('IFNULL(vRptContractPrice.tot_actwgt, 0) < IFNULL(vRptContractPrice.tot_estwgt, 0)')
+      .whereRaw('ISNULL(vRptContractPrice.tot_actwgt, 0) < ISNULL(vRptContractPrice.tot_estwgt, 0)')
   }
 
   static findOne(condition = {}) {
