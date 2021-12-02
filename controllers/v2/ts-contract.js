@@ -21,6 +21,12 @@ exports.getTsContractList = async (req, res) => {
         number: currentPage,
       })
     }
+    let filter = _.get(query, 'filter')
+    if (filter) {
+      filter = _.omit(filter, ['tot_actwgt', '[tot_actwgt]'])
+      query = _.assign(query, { filter: filter })
+    }
+
     const querier = new TsContractQuerier(query, TsContract.find())
     const response = await querier.run()
     res.success(trimValue(response))
