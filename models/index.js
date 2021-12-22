@@ -22,7 +22,7 @@ const TsTraderQuerier = require('./queryql/ts-trader')
 const TsTrucktypeQuerier = require('./queryql/ts-trucktype')
 const TsPricesQuerier = require('./queryql/ts-prices')
 const TsContractQuerier = require('./queryql/ts-contract')
-const ComGradeCodeQuerier = require('./queryql/ts-contract')
+const ComGradeCodeQuerier = require('./queryql/com-grade-code')
 
 module.exports = {
   BlCarNos,
