@@ -9,6 +9,7 @@ const TsProvince = require('./Ts_Province')
 const TsRetail = require('./ts_retail')
 const TsTrader = require('./ts_trader')
 const TsTrucktype = require('./ts_trucktype')
+const ComGradeCode = require('./vCom_grade_code')
 // queryql
 const BlCarNosQuerier = require('./queryql/bl-car-nos')
 const BlIDCardsQuerier = require('./queryql/bl-id-cards')
@@ -21,6 +22,7 @@ const TsTraderQuerier = require('./queryql/ts-trader')
 const TsTrucktypeQuerier = require('./queryql/ts-trucktype')
 const TsPricesQuerier = require('./queryql/ts-prices')
 const TsContractQuerier = require('./queryql/ts-contract')
+const ComGradeCodeQuerier = require('./queryql/ts-contract')
 
 module.exports = {
   BlCarNos,
@@ -34,6 +36,7 @@ module.exports = {
   TsRetail,
   TsTrader,
   TsTrucktype,
+  ComGradeCode,
   // queryql
   BlCarNosQuerier,
   BlIDCardsQuerier,
@@ -46,4 +49,5 @@ module.exports = {
   TsTrucktypeQuerier,
   TsPricesQuerier,
   TsContractQuerier,
+  ComGradeCodeQuerier
 }

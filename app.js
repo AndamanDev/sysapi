@@ -129,6 +129,7 @@ app.use(`${API_V2_PREFIX}/ts-province`, require('./routes/api/v2/ts-province'))
 app.use(`${API_V2_PREFIX}/ts-retail`, require('./routes/api/v2/ts-retail'))
 app.use(`${API_V2_PREFIX}/ts-trader`, require('./routes/api/v2/ts-trader'))
 app.use(`${API_V2_PREFIX}/ts-truck-type`, require('./routes/api/v2/ts-truck-type'))
+app.use(`${API_V2_PREFIX}/com-grade`, require('./routes/api/v2/com-grade'))
 
 // // catch 404 and forward to error handler
 // app.use(errorHandler)
