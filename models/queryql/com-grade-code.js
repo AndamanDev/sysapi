@@ -40,6 +40,10 @@ class Querier extends BaseQuerier {
       builder = _.omit(builder, ['limit', 'offset'])
     }
 
+    if (_.get(this.query, 'page.number')) {
+      builder.orderBy('vCom_grade_code.com_grade_code', 'asc')
+    }
+
     const page = _.get(this.query, 'page')
     const currentPage = parseInt(_.get(page, 'number', 1))
     const perPage = parseInt(_.get(page, 'size', this.pageDefaults.size))
