@@ -23,7 +23,7 @@ exports.getTsContractList = async (req, res) => {
     }
     let filter = _.get(query, 'filter')
     if (filter) {
-      filter = _.omit(filter, ['tot_actwgt', '[tot_actwgt]'])
+      filter = _.omit(filter, ['tot_actwgt', '[tot_actwgt]', 'pyear'])
       query = _.assign(query, { filter: filter })
     }
 
