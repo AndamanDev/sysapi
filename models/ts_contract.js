@@ -51,7 +51,7 @@ class Model {
       .from('vRptContractPrice')
       .where({
         'vRptContractPrice.status': 'A',
-        'vRptContractPrice.pyear': moment().format('YYYY'),
+        // 'vRptContractPrice.pyear': moment().format('YYYY'),
       })
       .whereNotNull('vRptContractPrice.trd_code')
       .whereNotNull('vRptContractPrice.ret_code')
