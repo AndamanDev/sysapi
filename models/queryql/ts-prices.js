@@ -75,6 +75,9 @@ class Querier extends BaseQuerier {
     schema.filter('effdate_to', operators, {
       field: 'vFindPriAnnFix_with_Freight.effdate_to',
     })
+    schema.filter('status', operators, {
+      field: 'vFindPriAnnFix_with_Freight.status',
+    })
 
     // sorting
     schema.sort('pyear', { field: 'vFindPriAnnFix_with_Freight.pyear' })
@@ -119,6 +122,9 @@ class Querier extends BaseQuerier {
     })
     schema.sort('effdate_to', {
       field: 'vFindPriAnnFix_with_Freight.effdate_to',
+    })
+    schema.sort('status', {
+      field: 'vFindPriAnnFix_with_Freight.status',
     })
     schema.page(!!this.query.page)
   }
